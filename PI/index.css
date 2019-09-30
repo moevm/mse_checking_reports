@@ -1,0 +1,120 @@
+/*---------page_style---------*/
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    background-color: #0a0e23;
+}
+.bottom {
+    height: 500px;
+}
+
+/*--------buttons_pop_up---------*/
+body:hover .document {
+    animation: document .5s 1 cubic-bezier(1,-0.05,.78,.63) forwards;
+}
+body:hover .template {
+    animation: template .5s 1 cubic-bezier(1,-0.05,.78,.63) forwards;
+}
+
+/*-----------buttons_style--------------*/
+
+input[type="file"] {
+    display: none;
+}
+.custom_file_upload {
+    top: 60%;
+    display: inline-block;
+    padding-top: 20px;
+    position: absolute;
+    z-index: 2;
+    text-transform: uppercase;
+    width: 220px;
+    height: 40px;
+    background-color: #0a0e23;
+    color: white;
+    border-radius: 30px;
+    text-align:center;
+    border: 2px white solid;
+}
+.document {
+    opacity: 0;
+    left: -100px;
+}
+.template {
+    opacity: 0;
+    right: -100px;
+}
+.document:hover, .template:hover {
+    color: #0a0e23;
+    background-color: white;
+    border: 2px #0a0e23 solid;
+}
+
+/*---------title_style----------*/
+
+.title {
+    position: absolute;
+    left: 50%;
+    width: 900px;
+    text-transform: uppercase;
+    margin: 50px 0 0 -450px;
+    text-align: center;
+    line-height: 60px;
+    background-image: url("https://media.giphy.com/media/kaZO7wtQvoBTfrC5AC/giphy.gif");
+    background-size: cover;
+    color: transparent;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
+    font-weight: 900;
+    font-style: italic;
+    z-index: 2;
+    -webkit-text-stroke: 1px white;
+}
+.first_str {
+    font-size: 60px;
+}
+.second_str {
+    font-size: .8em;
+}
+.third_str {
+    font-size: .8em;
+}
+
+/*---------logs_div----------*/
+
+.logs {
+    width: 800px;
+    height: 600px;
+    border: 1px white groove;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    margin: 0 0 0 -400px;
+    z-index: 2;
+}
+
+/*----------background_animation-----------*/
+
+canvas {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    margin: 0;
+    cursor: none;
+}
+
+/*-------animation--------*/
+@keyframes document {
+    to {
+        opacity: 1;
+        left: 23%;
+    }
+}
+
+@keyframes template {
+    to {
+        opacity: 1;
+        right: 23%;
+    }
+}
