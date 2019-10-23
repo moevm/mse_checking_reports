@@ -11,6 +11,7 @@ if u have no permission for **run.sh** then write in the console: **chmod +x run
 ### Tools
 + Flask
 + Docx
+
 Работа модуля:
 1) Подключение библиотеки python-docx(на данный момент работает только с docx, обработка doc будет достигнута с помощью конвертера doc в docx)
 2) Для получения объекта документа используем функцию Document.
