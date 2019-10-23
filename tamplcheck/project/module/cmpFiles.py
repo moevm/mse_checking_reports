@@ -1,4 +1,4 @@
-#import docx
+import docx
 
 
 # анализ формата текста файла
@@ -8,8 +8,6 @@ def analysis_doc(doc):
     for paragraph in doc.paragraphs:
         # Имя стиля
         dict_with_format['Стиль абзаца'] = paragraph.style.name
-        # Текст абзаца
-        dict_with_format['Текст абзаца'] = paragraph.text
         # Горизонтальное выравнивание
         if paragraph.paragraph_format.alignment is None:
             dict_with_format['Горизонтальное выравнивание'] = doc.styles[
@@ -87,32 +85,89 @@ def analysis_doc(doc):
             else:
                 dict_with_format['Цвет'] = run.font.color.rgb
         list_with_format.append(dict_with_format)
+        # Текст абзаца
+        list_with_format.append(paragraph.text)
         dict_with_format = {}
     return list_with_format
 
 
 # Функция проверки на соответиствие шаблону(в разработке)
-# def comparison_algorithm(template, checked):
-#    i = 0
-#    j = 0
-#    while i < len(template):
-#        if template[i]['Жирный']:
-#            for elem in template[i]:
-#                template[i][elem] = checked[j][elem]
-#                flag = 1
-#        elif:
-#
-#        i += 1
+def comparison_algorithm(template, checked):
+    i = 0
+    j = 0
+    mismatch_list = []
+    flag_2 = 0
+    flag = 0
+    mismatch_dict = {}
+    while i < len(template):
+        if template[i].get('Жирный') == checked[j].get('Жирный'):
+            for elem in template[i]:
+                if template[i].get(elem) != checked[j].get(elem):
+                    mismatch_dict[elem] = checked[j].get(elem)
+                    flag_2 = 1
+            if flag_2 == 1:
+                mismatch_list.append(int(j/2))
+                mismatch_list.append(mismatch_dict)
+                mismatch_dict = {}
+                flag_2 = 0
+            i += 2
+            j += 2
+        elif template[i].get('Жирный') and (checked[j].get('Жирный') is None or checked[j].get('Жирный') == False):
+            for elem in template[i]:
+                if checked[j].get(elem) != checked[j - 2].get(elem):
+                    flag = 1
+                    break
+            if flag == 0:
+                j += 2
+            else:
+                for elem in template[i]:
+                    if template[i].get(elem) != checked[j].get(elem):
+                        mismatch_dict[elem] = checked[j].get(elem)
+                        flag_2 = 1
+                if flag_2 == 1:
+                    mismatch_list.append(int(j/2))
+                    mismatch_list.append(mismatch_dict)
+                    mismatch_dict = {}
+                    flag_2 = 0
+                i += 2
+                j += 2
+        elif (template[i].get('Жирный') is None or template[i].get('Жирный') == False) and checked[j].get('Жирный'):
+            for elem in template[i]:
+                if template[i].get(elem) != template[j - 2].get(elem):
+                    flag = 1
+                    break
+            if flag == 0:
+                i += 2
+            else:
+                for elem in template[i]:
+                    if template[i].get(elem) != checked[j].get(elem):
+                        mismatch_dict[elem] = checked[j].get(elem)
+                        flag_2 = 1
+                if flag_2 == 1:
+                    mismatch_list.append(int(j/2))
+                    mismatch_list.append(mismatch_dict)
+                    mismatch_dict = {}
+                    flag_2 = 0
+                i += 2
+                j += 2
+        flag = 0
+    if not mismatch_list:
+        return True
+    else:
+        return mismatch_list
 
 
 # Считывание файлов
-#template = docx.Document()
-#checked_doc = docx.Document()
+template_doc = docx.Document()
+checked_doc = docx.Document()
 
 # словарь, в котором будем хранить информацию о формате текста документа
-#template_format = analysis_doc(template)
-#checked_format = analysis_doc(checked_doc)
-#for i in template_format:
-#    for j in i:
-#        print(j, ":", i.get(j))
-# print(comparison_algorithm(template_format,checked_format)
+template_format = analysis_doc(template_doc)
+checked_format = analysis_doc(checked_doc)
+# вывод полей
+for i in range(0, len(template_format), 2):
+    for j in template_format[i]:
+        print(j, ":", template_format[i].get(j))
+    print('text: ', template_format[i+1])
+# вывод отличий файла
+print(comparison_algorithm(template_format, checked_format))
