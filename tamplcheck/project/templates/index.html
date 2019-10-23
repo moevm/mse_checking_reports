@@ -2,30 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../templates/static/css/index.css" type="text/css"/>
+    <link rel="stylesheet" href="../static/css/index.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Title</title>
+    <title>Home</title>
 </head>
 <body>
     <div id="game-wrapper">
         <div class="title">
-            <div class="first_str">проверьте ваш документ
-                <div class="second_str">на соответствие
-                    <div class="third_str">шаблону!</div>
-                </div>
+            <div class="first_str">Tamplcheck</div>
             </div>
         </div>
         <label for="file_upload_document" class="custom_file_upload document">
             <i class="fa fa-folder-open"></i> Загрузить документ
         </label>
-        <input id="file_upload_document" type="file"/>
+        <input id="file_upload_document" type="file" onchange="handleFiles()"/>
         <label for="file_upload_template" class="custom_file_upload template">
             <i class="fa fa-folder-open"></i> Загрузить шаблон
         </label>
         <input id="file_upload_template" type="file"/>
-        <div class="logs">/*-----logs-----*/</div>
+        <div class="result">/*-----logs-----*/</div>
     </div>
     <div class="bottom"></div>
-    <script src="../templates/static/js/index.js"></script>
+    <script src="../static/js/index.js"></script>
 </body>
 </html>

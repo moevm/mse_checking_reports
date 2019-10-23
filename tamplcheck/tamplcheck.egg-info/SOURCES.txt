@@ -1,0 +1,7 @@
+project/__init__.py
+project/views.py
+tamplcheck.egg-info/PKG-INFO
+tamplcheck.egg-info/SOURCES.txt
+tamplcheck.egg-info/dependency_links.txt
+tamplcheck.egg-info/requires.txt
+tamplcheck.egg-info/top_level.txt

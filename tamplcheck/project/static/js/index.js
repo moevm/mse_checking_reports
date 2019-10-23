@@ -371,3 +371,49 @@ window.onload = function() {
     state("init");
     // followMe("init");
 };
+
+function handleFiles() {
+    var mFile = document.getElementById("file_upload_document").files; /* теперь вы можете работь со списком файлов */
+    console.log(mFile[0].name);
+    if (mFile[0].name.endsWith("docx")) {
+        console.log("file uploaded");
+        var obj = {
+            file: mFile[0].name
+        }
+        var res = document.getElementById("result");
+
+        fetch('/index/result')
+        .then(function (response) {
+            return response.text();
+        }).then(function (text) {
+            // Print the greeting as text
+            console.log('GET response text:');
+            console.log(text);
+        });
+
+        fetch('/index/result')
+        .then(function (response) {
+            // But parse it as JSON this time
+            return response.json();
+        })
+        .then(function (json) {
+            // Do anything with it!
+            console.log('GET response as JSON:');
+            console.log(json);
+        })
+
+        fetch('/index/result', {
+        // Specify the method
+        method: 'POST',
+        // A JSON payload
+        body: mFile[0].name
+    }).then(function (response) {
+        return response.text();
+    }).then(function (text) {
+        console.log('POST response: ');
+        // Should be 'OK' if everything was successful
+        console.log(text);
+    });
+    }
+}
+
