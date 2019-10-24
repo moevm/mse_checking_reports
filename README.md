@@ -1,12 +1,12 @@
 # mse_checking_reports
 # Tamplcheck
 
-### Run
-In the directory **project** execute **run.sh**:
+### Запуск
+В директории **project** напишите в терминале **run.sh**:
 ````
 ./run.sh
 ````
-if u have no permission for **run.sh** then write in the console: **chmod +x run.sh**
+Если в консоли приходит ответ об отсутствии прав на команду **run.sh**, тогда пропишите в консоли: **chmod +x run.sh**
 
 ### Tools
 + Flask
