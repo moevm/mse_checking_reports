@@ -16,7 +16,9 @@ body:hover .document {
 body:hover .template {
     animation: template .5s 1 cubic-bezier(1,-0.05,.78,.63) forwards;
 }
-
+body:hover .compare {
+    animation: compare .5s cubic-bezier(1,-0.05,.78,.63) forwards;
+}
 /*-----------buttons_style--------------*/
 
 input[type="file"] {
@@ -45,10 +47,20 @@ input[type="file"] {
     opacity: 0;
     right: -100px;
 }
-.document:hover, .template:hover {
+.document:hover, .template:hover, .compare:hover {
     color: #0a0e23;
     background-color: white;
     border: 2px #0a0e23 solid;
+}
+.compare {
+    opacity: 0;
+    left: 50%;
+    top: 85%;
+    margin: -20px 0 0 -110px;
+    padding: 0.4em 2em;
+    font-size: 17px;
+    height: 60px;
+    font-family: Avantgarde;
 }
 
 /*---------title_style----------*/
@@ -112,4 +124,8 @@ canvas {
         opacity: 1;
         right: 23%;
     }
+}
+
+@keyframes compare {
+    to {opacity: 1;}
 }
