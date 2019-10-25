@@ -373,47 +373,40 @@ window.onload = function() {
 };
 
 function handleFiles() {
-    var mFile = document.getElementById("file_upload_document").files; /* теперь вы можете работь со списком файлов */
-    console.log(mFile[0].name);
-    if (mFile[0].name.endsWith("docx")) {
-        console.log("file uploaded");
-        var obj = {
-            file: mFile[0].name
+    var baseFile = window.localStorage.getItem('base');
+    var templateFile = window.localStorage.getItem('template');
+    console.log(baseFile);
+    console.log(templateFile);
+    if (baseFile.endsWith("docx") && templateFile.endsWith("docx")) {
+        let req = {
+            base: baseFile,
+            template: templateFile
         }
-        var res = document.getElementById("result");
-
-        fetch('/index/result')
-        .then(function (response) {
-            return response.text();
-        }).then(function (text) {
-            // Print the greeting as text
-            console.log('GET response text:');
-            console.log(text);
-        });
-
-        fetch('/index/result')
-        .then(function (response) {
-            // But parse it as JSON this time
-            return response.json();
-        })
-        .then(function (json) {
-            // Do anything with it!
-            console.log('GET response as JSON:');
-            console.log(json);
-        })
+        console.log("file uploaded");
 
         fetch('/index/result', {
         // Specify the method
         method: 'POST',
         // A JSON payload
-        body: mFile[0].name
+        body: JSON.stringify(req)
     }).then(function (response) {
         return response.text();
     }).then(function (text) {
+        //our response from views.py
         console.log('POST response: ');
-        // Should be 'OK' if everything was successful
         console.log(text);
+        alert(text);
     });
     }
+}
+
+function saveBase() {
+    var mFile = document.getElementById("file_upload_document").files;
+    window.localStorage.setItem('base', mFile[0].name);
+}
+
+function saveTemplate() {
+    var mFile = document.getElementById("file_upload_template").files;
+    window.localStorage.setItem('template', mFile[0].name);
 }
 
