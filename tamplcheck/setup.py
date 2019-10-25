@@ -8,6 +8,7 @@ setup(
         "Flask==1.1.1",
         "Flask-Script==2.0.6",
         "Flask-WTF==0.14.2",
-        "WTForms==2.2.1"
+        "WTForms==2.2.1",
+        "python-docx==0.8.10"
     ]
 )

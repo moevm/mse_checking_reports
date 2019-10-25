@@ -52,6 +52,11 @@ input[type="file"] {
     background-color: white;
     border: 2px #0a0e23 solid;
 }
+.template:hover, .template:hover, .compare:hover {
+    color: #0a0e23;
+    background-color: white;
+    border: 2px #0a0e23 solid;
+}
 .compare {
     opacity: 0;
     left: 50%;
