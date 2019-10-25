@@ -45,3 +45,7 @@
 ### Пример работы
 1) Запустим приложение в консоли  
 ![Начальный запуск](https://github.com/Villain123/images/blob/master/2.png)
+2) Перейдем в браузер и впишем "localhost:5000"
+![Открытие браузера](https://github.com/Villain123/images/blob/master/3.png)
+3) Нажмем на кнопку загрузить документ
+![Загрузка документа](https://github.com/Villain123/images/blob/master/4.png)
