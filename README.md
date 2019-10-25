@@ -44,4 +44,4 @@
 
 ### Пример работы
 1) Запустим приложение в консоли  
-![Начальный запуск]https://github.com/Villain123/images/blob/master/2.png
+![Начальный запуск](https://github.com/Villain123/images/blob/master/2.png)
