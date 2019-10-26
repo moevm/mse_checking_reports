@@ -11,7 +11,7 @@ sudo apt update
 sudo apt-get install python3  
 sudo apt install python3-pip  
 Также понадобятся библиотеки:  
-Flask v1.1.1
+Flask v1.1.1  
 Flask-Script v2.0.6  
 Flask-WTF v0.14.2  
 WTForms v2.2.1  
