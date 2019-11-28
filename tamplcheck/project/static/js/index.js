@@ -381,6 +381,7 @@ function handleFiles() {
         alert("Документы не выбраны");
     }
     else if (baseFile.endsWith("docx") && templateFile.endsWith("docx")) {
+        document.getElementById("bottom").style.display = "block";
         let req = {
             base: baseFile,
             template: templateFile
