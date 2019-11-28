@@ -377,7 +377,10 @@ function handleFiles() {
     var templateFile = window.localStorage.getItem('template');
     console.log(baseFile);
     console.log(templateFile);
-    if (baseFile.endsWith("docx") && templateFile.endsWith("docx")) {
+    if (baseFile === "{}" || templateFile === "{}") {
+        alert("Документы не выбраны");
+    }
+    else if (baseFile.endsWith("docx") && templateFile.endsWith("docx")) {
         let req = {
             base: baseFile,
             template: templateFile
