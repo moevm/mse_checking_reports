@@ -6,7 +6,16 @@ body {
     background-color: #0a0e23;
 }
 .bottom {
-    height: 500px;
+    display: none;
+    height: 600px;
+    width: 500px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    margin-left: -250px;
+    background: lightgray;
+    z-index: 15;
+    border-radius: 10px;
 }
 
 /*--------buttons_pop_up---------*/
