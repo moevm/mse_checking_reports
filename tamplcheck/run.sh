@@ -1,15 +1,15 @@
  #!/usr/bin/env bash
 
-# setup path to the application
+# имя корневой папки приложения
 export FLASK_APP=project
 
-# setup mode
+# мод установки
 export FLASK_ENV=development
 
 export SERVER_NAME=localhost:5000
 
-# install project in virtual enviroment(searching for setup.py)
+# установка проекта в виртуальном окружении
 pip3 install -e .
 
-# run the application
+# запуск приложения
 flask run
