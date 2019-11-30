@@ -1,8 +1,13 @@
+# coding=utf-8
+"""Библиотека для работы с docx файлами"""
 import docx
 
 
-# анализ формата текста файла
 def analysis_doc(filename):
+    """ анализ формата текста файла
+
+    :param filename: полный путь до файла + его имя
+    :return: список раздичных парметров файла"""
     doc = docx.Document(filename)
     list_with_format = []
     dict_with_format = {}
@@ -92,8 +97,12 @@ def analysis_doc(filename):
     return list_with_format
 
 
-# Функция проверки на соответиствие шаблону(в разработке)
 def comparison_algorithm(template, checked):
+    """ Функция проверки на соответиствие шаблону(в разработке)
+
+    :param template: список параметров файла-шаблона
+    :param checked: список параметров исходного файла
+    :return: пустой список, если файлы сопоставимы либо список несоответствий """
     i = 0
     j = 0
     mismatch_list = []

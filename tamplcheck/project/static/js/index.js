@@ -373,6 +373,7 @@ window.onload = function() {
 };
 
 function handleFiles() {
+    /* функция отправки post-запроса */
     var baseFile = window.localStorage.getItem('base');
     var templateFile = window.localStorage.getItem('template');
     console.log(baseFile);
@@ -401,11 +402,13 @@ function handleFiles() {
 }
 
 function saveBase() {
+    /* сохрание полного пути до исходного файла */
     var mFile = document.getElementById("file_upload_document").files;
     window.localStorage.setItem('base', mFile[0].name);
 }
 
 function saveTemplate() {
+    /* сохранение полного пути до файла-шаблона */
     var mFile = document.getElementById("file_upload_template").files;
     window.localStorage.setItem('template', mFile[0].name);
 }
