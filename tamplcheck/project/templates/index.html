@@ -7,9 +7,12 @@
     <title>Home</title>
 </head>
 <body>
-    <div id="game-wrapper">
-        <div class="title">
-            <div class="first_str">Tamplcheck</div>
+    <div id="main_block">
+        <div class="title">Tamplcheck</div>
+        <div id="readme">
+            <a href = "https://github.com/moevm/mse_checking_reports/blob/master/README.md">
+                <img src="https://img.icons8.com/ios-filled/50/000000/menu-2.png">
+            </a>
         </div>
         <label for="file_upload_document" class="custom_file_upload document">
             <i class="fa fa-folder-open"></i> Загрузить документ
@@ -19,10 +22,8 @@
         </label>
         <input id="file_upload_document" type="file" onchange="saveBase()"/>
         <input id="file_upload_template" type="file" onchange="saveTemplate()"/>
-        <button class="custom_file_upload compare" onclick="handleFiles()">Сравнить</button>
-    </div>
-    <div id="bottom">
-        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-round-large w3-display-topright">x</span>
+        <button class="custom_file_upload compare" onclick="handleFiles()"></button>
+        <div class="report"></div>
     </div>
     <script src="../static/js/index.js"></script>
 </body>
