@@ -1,145 +1,98 @@
 /*---------page_style---------*/
 body {
-    max-width: 100%;
-    overflow-x: hidden;
-    margin: 0;
-    background-color: #0a0e23;
-}
-#bottom {
-    display: none;
-    height: 600px;
-    width: 500px;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    margin-left: -250px;
-    background: lightgray;
-    z-index: 15;
-    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
 }
 
-/*--------buttons_pop_up---------*/
-body:hover .document {
-    animation: document .5s 1 cubic-bezier(1,-0.05,.78,.63) forwards;
-}
-body:hover .template {
-    animation: template .5s 1 cubic-bezier(1,-0.05,.78,.63) forwards;
-}
-body:hover .compare {
-    animation: compare .5s cubic-bezier(1,-0.05,.78,.63) forwards;
-}
-/*-----------buttons_style--------------*/
-
-input[type="file"] {
-    display: none;
-}
-.custom_file_upload {
-    top: 40%;
-    display: inline-block;
-    padding-top: 20px;
-    position: absolute;
-    z-index: 2;
-    text-transform: uppercase;
-    width: 220px;
-    height: 40px;
-    background-color: #0a0e23;
-    color: white;
-    border-radius: 30px;
-    text-align:center;
-    border: 2px white solid;
-}
-.document {
-    opacity: 0;
-    left: -100px;
-}
-.template {
-    opacity: 0;
-    right: -100px;
-}
-.document:hover, .template:hover, .compare:hover {
-    color: #0a0e23;
-    background-color: white;
-    border: 2px #0a0e23 solid;
-}
-.template:hover, .template:hover, .compare:hover {
-    color: #0a0e23;
-    background-color: white;
-    border: 2px #0a0e23 solid;
-}
-.compare {
-    opacity: 0;
-    left: 50%;
-    top: 65%;
-    margin: -20px 0 0 -110px;
-    padding: 0.4em 2em;
-    font-size: 17px;
-    height: 60px;
-    font-family: Avantgarde;
+/*---------main_block---------*/
+#main_block {
+    width: 70%;
+    height: 94%;
+    position: fixed;
+    top: 3%;
+    left: 15%;
+    border-radius: 50px;
+    background-color: #E8F0F6;
 }
 
-/*---------title_style----------*/
-
+/*--------title_style---------*/
 .title {
     position: absolute;
     left: 50%;
     width: 900px;
     text-transform: uppercase;
-    margin: 50px 0 0 -450px;
+    margin: 0 0 0 -450px;
     text-align: center;
-    line-height: 60px;
-    background-image: url("https://media.giphy.com/media/kaZO7wtQvoBTfrC5AC/giphy.gif");
-    background-size: cover;
-    color: transparent;
-    -moz-background-clip: text;
-    -webkit-background-clip: text;
+    color: #0a0e23;
     font-weight: 900;
     font-style: italic;
     z-index: 2;
-    -webkit-text-stroke: 1px white;
-}
-.first_str {
+    -webkit-text-stroke: 1px black;
     font-size: 60px;
 }
 
-
-/*---------logs_div----------*/
-
-.logs {
-    width: 800px;
-    height: 600px;
-    border: 1px white groove;
+/*------------menu------------*/
+#readme {
+    width: 30px;
+    height: 40px;
     position: absolute;
-    top: 80%;
-    left: 50%;
-    margin: 0 0 0 -400px;
-    z-index: 2;
+    margin: 10px 0 0 30px;
 }
 
-/*----------background_animation-----------*/
-
-canvas {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    margin: 0;
-    cursor: none;
+/*--------buttons_style-------*/
+input[type="file"] {
+    display: none;
+}
+.custom_file_upload {
+    position: inherit;
+    padding: 20px;
+    margin-left: 100px;
+    text-transform: uppercase;
+    width: 220px;
+    color: #0a0e23;
+    border-radius: 30px;
+    text-align:center;
+}
+.document {
+    top: 30%;
+    background-color: rgba(232,176,255,.7);
+}
+.template {
+    top: 50%;
+    background-color: rgba(81,90,218,.7);
+}
+.document:hover, .template:hover {
+    color: #0a0e23;
+    background-color: white;
+    border: 2px #0a0e23 solid;
+}
+.compare:hover {
+    border: 3px #0a0e23 solid;
+    height: 90px;
+    width: 90px;
+    border-radius: 45px;
+}
+.compare {
+    background-image: url("https://img.icons8.com/dotty/80/000000/compare.png");
+    background-repeat: no-repeat;
+    padding-left: -5px;
+    height: 85px;
+    width: 85px;
+    border-radius: 42px;
+    border: 2px #0a0e23 solid;
+    margin: 38% 0 0 13%;
 }
 
-/*-------animation--------*/
-@keyframes document {
-    to {
-        opacity: 1;
-        left: 23%;
-    }
-}
-
-@keyframes template {
-    to {
-        opacity: 1;
-        right: 23%;
-    }
-}
-
-@keyframes compare {
-    to {opacity: 1;}
+/*-----------report-----------*/
+.report {
+    width: 35%;
+    height: 79%;
+    position: fixed;
+    top: 13%;
+    left: 48%;
+    border-radius: 50px;
+    background-color: #ffffff;
+    border: 3px groove #DBDBDB;
 }
