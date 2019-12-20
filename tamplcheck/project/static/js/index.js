@@ -7,11 +7,11 @@ function handleFiles() {
     if (baseFile === "{}" || templateFile === "{}") {
         alert("Документы не выбраны");
     }
-    else if (baseFile.endsWith("docx") && templateFile.endsWith("docx")) {
+    else {
         let req = {
             base: baseFile,
             template: templateFile
-        }
+        };
         console.log("file uploaded");
 
         fetch('/index/result', {

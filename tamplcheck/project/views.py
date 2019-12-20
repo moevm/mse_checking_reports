@@ -1,5 +1,6 @@
 # coding=utf-8
 """Модуль обработки запросов к серверу"""
+import os
 import re
 
 from project.tests.cmptests import test_compare, test_analysis
@@ -13,6 +14,7 @@ from project import app
 """для работы с путями"""
 from project.module.cmpFiles import comparison_algorithm, analysis_doc
 """нужны для вызова функций сопоставления алгоритмов"""
+import subprocess
 
 
 @app.route("/")
@@ -21,8 +23,8 @@ def index():
     """ отрисовка стартовой страницы
 
     :return: шаблон страницы """
-    test_compare()
-    test_analysis()
+    #test_compare()
+    #test_analysis()
     return render_template("index.html", title='Home')
 
 
@@ -33,10 +35,32 @@ def get_result():
     :return: ответ на запрос, либо успех, либо список несоответсвий при сравнении """
     if request.method == 'POST':
         req = request.data.decode('utf-8')
-        res = re.findall(r'\w+.docx', req)
+        res = re.findall(r'\b\w+\.[pdor]\w+\b', req)
         print(res)
-        base_format = analysis_doc(res[0])
-        templ_format = analysis_doc(res[1])
+        first = subprocess.Popen([
+            '/usr/bin/soffice',
+            '--headless',
+            '--convert-to',
+            'docx',
+            '--outdir',
+            os.path.abspath(os.path.dirname(res[0])),
+            os.path.abspath(res[0])
+        ])
+        first.wait()
+        second = subprocess.Popen([
+            '/usr/bin/soffice',
+            '--headless',
+            '--convert-to',
+            'docx',
+            '--outdir',
+            os.path.abspath(os.path.dirname(res[1])),
+            os.path.abspath(res[1])
+        ])
+        second.wait()
+        converted_base = "{}.docx".format(res[0].split(".")[0])
+        converted_template = "{}.docx".format(res[0].split(".")[0])
+        base_format = analysis_doc(converted_base)
+        templ_format = analysis_doc(converted_template)
         response = comparison_algorithm(base_format, templ_format)
         if not response:
             return 'base file and template are equal', 200
