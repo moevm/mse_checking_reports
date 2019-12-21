@@ -15,10 +15,11 @@ def analysis_doc(filename):
         # Имя стиля
         dict_with_format['Style of paragraph'] = paragraph.style.name
         # Горизонтальное выравнивание
-        # if paragraph.paragraph_format.alignment is None:
-        #    dict_with_format['Horizontal alignment'] = doc.styles[paragraph.style.name].paragraph_format.alignment
-        # else:
-        #    dict_with_format['Horizontal alignment'] = paragraph.paragraph_format.alignment
+        if paragraph.text != '':
+            if paragraph.paragraph_format.alignment is None:
+                dict_with_format['Horizontal alignment'] = doc.styles[paragraph.style.name].paragraph_format.alignment
+            else:
+                dict_with_format['Horizontal alignment'] = paragraph.paragraph_format.alignment
         # Отступ слева
         if paragraph.paragraph_format.left_indent is None:
             dict_with_format['Left margin'] = doc.styles[paragraph.style.name].paragraph_format.left_indent
@@ -59,7 +60,7 @@ def analysis_doc(filename):
         # print(paragraph.paragraph_format.page_break_before)
         # print(paragraph.paragraph_format.widow_control)
 
-        for run in paragraph.runs:
+        for run in paragraph.runs[:1]:
             # Шрифт
             if run.font.name is None:
                 dict_with_format['Font'] = doc.styles[paragraph.style.name].font.name
@@ -109,9 +110,10 @@ def comparison_algorithm(template, checked):
     dict_for_blocks = {}
     while counter_for_template < len(template):
         if template[counter_for_template].get('Text') == '':
-            if flag_for_lines == 0:
-                if checked[counter_for_checked].get('Text') != '':
-                    mismatch_blocks.append("Line was skipped in {0} paragraph".format(counter_for_checked))
+            flag_for_lines = 1
+           # if flag_for_lines == 0:
+           #     if checked[counter_for_checked].get('Text') != '':
+           #         mismatch_blocks.append("Была пропущена строка в {0} ".format(counter_for_checked))
         elif template[counter_for_template].get('Color') == '000000' \
                 or template[counter_for_template].get('Color') == 'None':
             flag_for_lines = 0
@@ -126,13 +128,14 @@ def comparison_algorithm(template, checked):
                 counter_for_checked = k
             else:
                 dict_for_blocks[counter_for_template] = -1
-                mismatch_blocks.append("Block:'{0}', was skipped".format(template[counter_for_template].get('Text')))
+                mismatch_blocks.append("Пункт:'{0}', был пропущен, либо в нем была допущена ошибка.".format(template[counter_for_template].get('Text')))
         else:
             flag_for_lines = 1
         flag_in_block = 0
         counter_for_template += 1
         counter_for_checked += 1
     if mismatch_blocks:
+        mismatch_blocks.append("Исправьте структуру проверямого документа для последущей проверки формата.")
         return mismatch_blocks
     counter_for_checked = 0
     counter_for_template = 0
@@ -145,8 +148,8 @@ def comparison_algorithm(template, checked):
                 counter_for_checked = dict_for_blocks.get(counter_for_template)
                 for key in template[counter_for_template].keys():
                     if template[counter_for_template].get(key) != checked[counter_for_checked].get(key):
-                        result.append({counter_for_template - 1: {key: template[counter_for_template].get(key)},
-                                       counter_for_checked - 1: {key: checked[counter_for_checked].get(key)}})
+                        result.append({"В строке {0} шаблона".format(counter_for_template): {key: template[counter_for_template].get(key)}})
+                        result.append({"В строке {0} проверяемого документа".format(counter_for_checked): {key: checked[counter_for_checked].get(key)}})
                 counter_for_template += 1
                 counter_for_checked += 1
             else:
@@ -159,31 +162,32 @@ def comparison_algorithm(template, checked):
                 else:
                     flag_in_block = dict_for_blocks.get(counter_for_template)
                     break
-                if template[i].get('Text') != '':
-                    for j in range(counter_for_checked, flag_in_block):
-                        if checked[j].get('Text') != '':
-                            for key in checked[j].keys():
-                                if key != 'Text' and key != 'Color':
-                                    if template[i].get(key) != checked[j].get(key) and checked[j].get('Text') != '':
-                                        mismatch_list[key] = checked[j].get(key)
-                                        true_list[key] = template[i].get(key)
-                            if mismatch_list:
-                                result.append({counter_for_template - 1: true_list, j - 1: mismatch_list})
-                            mismatch_list = {}
-                            true_list = {}
+            if template[i].get('Text') != '':
+                for j in range(counter_for_checked, flag_in_block):
+                    if checked[j].get('Text') != '':
+                        for key in checked[j].keys():
+                            if key != 'Text' and key != 'Color':
+                                if template[i].get(key) != checked[j].get(key) and checked[j].get('Text') != '':
+                                    mismatch_list[key] = checked[j].get(key)
+                                    true_list[key] = template[i].get(key)
+                        if mismatch_list:
+                            result.append({"В строке {0} шаблона".format(counter_for_template - 1): true_list,
+                                           "В строке {0} проверяемого документа".format(j - 1): mismatch_list})
+                        mismatch_list = {}
+                        true_list = {}
     return result
 
 
 # Считывание файлов
-# template_doc = docx.Document("template.docx")
-# checked_doc = docx.Document("checked.docx")
+#template_doc = docx.Document("template.docx")
+#checked_doc = docx.Document("checked.docx")
 #
 # словарь, в котором будем хранить информацию о формате текста документа
-# template_format = analysis_doc(template_doc)
-# checked_format = analysis_doc(checked_doc)
+#template_format = analysis_doc(template_doc)
+#checked_format = analysis_doc(checked_doc)
 # вывод полей
-# for i in range(0, len(template_format), 2):
-#    for j in template_format[i]:
-#        print(j, ":", template_format[i].get(j))
+#for i in range(0, len(checked_format), 2):
+#   for j in checked_format[i]:
+#       print(j, ":", checked_format[i].get(j))
 # вывод отличий файла
-# print(comparison_algorithm(template_format, checked_format))
+#print(comparison_algorithm(template_format, checked_format))
