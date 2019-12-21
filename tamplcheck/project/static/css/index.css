@@ -86,7 +86,7 @@ input[type="file"] {
 }
 
 /*-----------report-----------*/
-.report {
+#report {
     width: 35%;
     height: 79%;
     position: fixed;

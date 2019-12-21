@@ -25,7 +25,9 @@ function handleFiles() {
         //our response from views.py
         console.log('POST response: ');
         console.log(text);
-        alert(text);
+        if (!text)
+            document.getElementById('report').innerText = 'Документ соответствует шаблону';
+        else document.getElementById('report').innerText = text;
     });
     }
 }
