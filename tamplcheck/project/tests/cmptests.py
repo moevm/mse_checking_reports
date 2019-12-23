@@ -1,5 +1,7 @@
-from project.module.cmpFiles import comparison_algorithm, analysis_doc
-
+#from project.module.cmpFiles import comparison_algorithm, analysis_doc
+import sys
+sys.path.insert(1, '../module')
+import cmpFiles
 
 def test_compare():
     if comparison_algorithm(analysis_doc("test.docx"), analysis_doc("test.docx")) == []:
@@ -20,3 +22,8 @@ def test_analysis_different_docx():
         print("error in algorithm")
     else:
         print("ok!")
+
+
+test_compare()
+test_analysis()
+test_analysis_different_docx()
